@@ -53,8 +53,8 @@ export default function Home() {
           <Image
             src="/logo_opendex.png"
             alt="Logo de la empresa"
-            width={150}
-            height={50}
+            width={35}
+            height={35}
             data-ai-hint="logo"
             className="mb-8"
           />
