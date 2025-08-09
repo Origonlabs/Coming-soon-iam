@@ -1,0 +1,11 @@
+name = "nextn"
+compatibility_date = "2024-08-01"
+
+[pages]
+main = "./.wrangler/tmp/bundle.js"
+
+[[pages.functions.bindings]]
+name = "ASSETS"
+type = "ASSETS"
+module = true
+entrypoint = "./.wrangler/tmp/bundle.js"
