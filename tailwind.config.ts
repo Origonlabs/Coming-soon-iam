@@ -13,7 +13,7 @@ export default {
       fontFamily: {
         body: ['europa', 'sans-serif'],
         headline: ['europa', 'sans-serif'],
-        code: ['monospace'],
+        code: ['bdr-mono', 'monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',

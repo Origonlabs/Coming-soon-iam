@@ -70,7 +70,7 @@ export default function Home() {
         </p>
       </main>
       <footer ref={footerRef} className="relative z-10 p-6 text-center text-xs text-muted-foreground opacity-0">
-        <p>© 2025, Opendex Corporation. o sus empresas afiliadas. Todos los derechos reservados.</p>
+        <p className="font-code">© 2025, Opendex Corporation. o sus empresas afiliadas. Todos los derechos reservados.</p>
       </footer>
     </div>
   );
