@@ -3,22 +3,22 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'En desarrollo — Perfecto',
-  description: 'Nuestra nueva página estará disponible muy pronto.',
+  title: 'Próximamente — Opendex',
+  description: 'Estamos construyendo algo nuevo y emocionante. ¡Vuelve pronto!',
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#E5F0FF' },
     { media: '(prefers-color-scheme: dark)', color: '#111728' },
   ],
   openGraph: {
-    title: 'En desarrollo — Perfecto',
-    description: 'Nuestra nueva página estará disponible muy pronto.',
+    title: 'Próximamente — Opendex',
+    description: 'Estamos construyendo algo nuevo y emocionante. ¡Vuelve pronto!',
     type: 'website',
     locale: 'es_ES',
   },
   twitter: {
     card: 'summary',
-    title: 'En desarrollo — Perfecto',
-    description: 'Nuestra nueva página estará disponible muy pronto.',
+    title: 'Próximamente — Opendex',
+    description: 'Estamos construyendo algo nuevo y emocionante. ¡Vuelve pronto!',
   },
 };
 

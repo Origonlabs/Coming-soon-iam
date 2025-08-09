@@ -62,10 +62,10 @@ export default function Home() {
           ref={h1Ref}
           className="font-bold tracking-tighter text-foreground opacity-0 transition-shadow duration-300 text-glow-hover"
         >
-          Esta página está en desarrollo
+          Nuestra nueva web está en camino
         </h1>
         <p ref={pRef} className="mt-4 max-w-xl text-lg md:text-xl text-muted-foreground opacity-0">
-          Estará disponible próximamente
+          Estamos trabajando en algo increíble. Vuelve pronto para descubrirlo.
         </p>
       </main>
       <footer ref={footerRef} className="relative z-10 p-6 text-center text-xs text-muted-foreground opacity-0">
