@@ -3,10 +3,10 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
+import SplitText from '@/components/SplitText';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const h1Ref = useRef<HTMLHeadingElement>(null);
   const pRef = useRef<HTMLParagraphElement>(null);
   const logoRef = useRef<HTMLImageElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -16,12 +16,12 @@ export default function Home() {
 
     const ctx = gsap.context(() => {
       if (prefersReducedMotion) {
-        gsap.set([logoRef.current, h1Ref.current, pRef.current, footerRef.current], { opacity: 1, y: 0 });
+        gsap.set([logoRef.current, pRef.current, footerRef.current], { opacity: 1, y: 0 });
         return;
       }
       
       gsap.fromTo(
-        [logoRef.current, h1Ref.current, pRef.current, footerRef.current],
+        [logoRef.current, pRef.current, footerRef.current],
         { y: 8, opacity: 0 },
         {
           y: 0,
@@ -29,7 +29,7 @@ export default function Home() {
           duration: 1.2,
           ease: 'power3.out',
           stagger: 0.2,
-          delay: 0.3,
+          delay: 0.5, // Start after split text animation
         }
       );
     }, containerRef);
@@ -59,10 +59,9 @@ export default function Home() {
           />
         </div>
         <h1
-          ref={h1Ref}
-          className="font-bold tracking-tighter text-foreground opacity-0 transition-shadow duration-300 text-glow-hover"
+          className="font-bold tracking-tighter text-foreground transition-shadow duration-300 text-glow-hover"
         >
-          Nuestra nueva web está en camino
+          <SplitText>Algo nuevo está por llegar</SplitText>
         </h1>
         <p ref={pRef} className="mt-4 max-w-xl text-lg md:text-xl text-muted-foreground opacity-0">
           Estamos trabajando en algo increíble. Vuelve pronto para descubrirlo.
