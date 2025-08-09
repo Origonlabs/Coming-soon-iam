@@ -51,7 +51,7 @@ export default function Home() {
       >
         <div ref={logoRef} className="opacity-0">
           <Image
-            src="https://placehold.co/150x50.png"
+            src="/logo_opendex.png"
             alt="Logo de la empresa"
             width={150}
             height={50}
