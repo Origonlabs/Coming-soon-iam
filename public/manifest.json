@@ -1,0 +1,27 @@
+{
+  "name": "Opendex - Próximamente",
+  "short_name": "Opendex",
+  "description": "Estamos construyendo algo nuevo y emocionante. ¡Vuelve pronto!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111728",
+  "theme_color": "#006AFF",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es",
+  "categories": ["technology", "business"],
+  "icons": [
+    {
+      "src": "/logo_opendex.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo_opendex.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

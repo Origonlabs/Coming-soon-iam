@@ -1,0 +1,8 @@
+# Cloudflare Pages Redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# Handle trailing slashes consistently
+# /old-path  /new-path  301
+
+# SPA fallback (handled by Next.js static export)
+# /*  /index.html  200
