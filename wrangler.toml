@@ -1,8 +1,8 @@
 # Wrangler configuration for Cloudflare Pages
 # https://developers.cloudflare.com/pages/
 
-name = "coming-soon"
-compatibility_date = "2026-01-15"
+name = "coming-soon-iam"
+compatibility_date = "2026-02-04"
 
 # Cloudflare Pages static site deployment
 # The 'out' directory is where Next.js static export outputs files

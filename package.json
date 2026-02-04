@@ -1,5 +1,5 @@
 {
-	"name": "coming-soon",
+	"name": "coming-soon-iam",
 	"version": "1.0.0",
 	"private": true,
 	"type": "module",
@@ -10,8 +10,8 @@
 		"lint": "next lint",
 		"typecheck": "bun x tsc --noEmit",
 		"preview": "bun x serve out",
-		"deploy": "bun run build && wrangler pages deploy out --project-name=coming-soon",
-		"deploy:prod": "bun run build && wrangler pages deploy out --project-name=coming-soon --branch=main"
+		"deploy": "bun run build && wrangler pages deploy out --project-name=coming-soon-iam",
+		"deploy:prod": "bun run build && wrangler pages deploy out --project-name=coming-soon-iam --branch=main"
 	},
 	"dependencies": {
 		"react": "^18.3.1",
