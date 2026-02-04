@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+// Importar Beams dinámicamente (Three.js no funciona con SSR)
+const Beams = dynamic(() => import('@/components/Beams'), { ssr: false });
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -73,8 +77,25 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={containerRef} className="relative w-full min-h-screen overflow-hidden flex flex-col bg-gradient-to-br from-background via-background to-primary/5">
+    <div ref={containerRef} className="relative w-full min-h-screen overflow-hidden flex flex-col">
       
+      {/* Beams Background */}
+      <div className="beams-wrapper" aria-hidden="true">
+        <Beams
+          beamWidth={2}
+          beamHeight={15}
+          beamNumber={12}
+          lightColor="#6872f8"
+          speed={2.8}
+          noiseIntensity={0}
+          scale={0.2}
+          rotation={0}
+        />
+      </div>
+
+      {/* Gradient Overlay */}
+      <div className="fixed inset-0 -z-20 bg-gradient-to-b from-background/50 via-background/30 to-background/70" aria-hidden="true" />
+
       {/* Animated Grid Background */}
       <div className="absolute inset-0 -z-20" aria-hidden="true">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.05]" />
@@ -92,9 +113,6 @@ export default function Home() {
         <div className="orb orb-4" />
         <div className="orb orb-5" />
       </div>
-
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 -z-5 bg-gradient-radial from-transparent via-transparent to-background/80" aria-hidden="true" />
 
       {/* Noise Texture */}
       <div className="absolute inset-0 -z-5 opacity-[0.015] dark:opacity-[0.025] pointer-events-none bg-noise" aria-hidden="true" />
