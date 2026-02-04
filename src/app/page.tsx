@@ -6,7 +6,13 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 // Importar Beams dinámicamente (Three.js no funciona con SSR)
-const Beams = dynamic(() => import('@/components/Beams'), { ssr: false });
+const Beams = dynamic(
+  () => import('@/components/Beams').catch(() => () => null),
+  { 
+    ssr: false,
+    loading: () => <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-primary/10" />
+  }
+);
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
