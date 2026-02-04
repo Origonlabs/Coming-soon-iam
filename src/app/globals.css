@@ -321,6 +321,674 @@
 }
 
 /* ===========================================
+   PROFESSIONAL EMAIL SIGNUP CONTAINER
+   =========================================== */
+.email-signup-container {
+  @apply relative;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  backdrop-filter: blur(100px) saturate(200%) brightness(1.1);
+  -webkit-backdrop-filter: blur(100px) saturate(200%) brightness(1.1);
+  border-radius: 9999px;
+  padding: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.12),
+    0 0 100px rgba(255, 255, 255, 0.05),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.email-signup-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.email-signup-container:focus-within {
+  border-color: hsl(var(--primary) / 0.4);
+  box-shadow: 
+    0 24px 70px rgba(0, 0, 0, 0.15),
+    0 0 120px hsl(var(--primary) / 0.1),
+    0 0 0 3px hsl(var(--primary) / 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.email-signup-container:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 
+    0 24px 70px rgba(0, 0, 0, 0.15),
+    0 0 100px rgba(255, 255, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.email-signup-inner {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.email-signup-container:is(.dark *) {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(100px) saturate(180%) brightness(0.95);
+  -webkit-backdrop-filter: blur(100px) saturate(180%) brightness(0.95);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 80px hsl(var(--primary) / 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.email-signup-container:is(.dark *):focus-within {
+  border-color: hsl(var(--primary) / 0.5);
+  box-shadow: 
+    0 24px 70px rgba(0, 0, 0, 0.5),
+    0 0 120px hsl(var(--primary) / 0.15),
+    0 0 0 3px hsl(var(--primary) / 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ===========================================
+   PREMIUM SIGNUP - ENTERPRISE DESIGN SYSTEM
+   =========================================== */
+.premium-signup-wrapper {
+  @apply relative max-w-xl mx-auto;
+}
+
+.premium-signup-label {
+  @apply relative inline-flex items-center justify-center w-full mb-6;
+}
+
+.premium-label-glow {
+  @apply absolute;
+  width: 120px;
+  height: 40px;
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  filter: blur(40px);
+  opacity: 0.4;
+  animation: label-glow 3s ease-in-out infinite;
+}
+
+@keyframes label-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+.premium-label-text {
+  @apply relative px-5 py-2 text-xs font-bold tracking-widest uppercase;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 100px;
+  color: hsl(var(--foreground) / 0.8);
+  letter-spacing: 0.15em;
+}
+
+.premium-signup-card {
+  @apply relative overflow-hidden;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.03) 40%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  backdrop-filter: blur(100px) saturate(200%) brightness(1.08);
+  -webkit-backdrop-filter: blur(100px) saturate(200%) brightness(1.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 28px;
+  box-shadow: 
+    0 32px 80px rgba(0, 0, 0, 0.12),
+    0 0 1px rgba(255, 255, 255, 0.5),
+    0 0 120px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-signup-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    rgba(255, 255, 255, 0.05) 60%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.premium-signup-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.15),
+    0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 160px hsl(var(--primary) / 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.premium-card-glow {
+  @apply absolute -z-10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: radial-gradient(
+    ellipse at center,
+    hsl(var(--primary) / 0.15) 0%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.premium-signup-card:hover .premium-card-glow {
+  opacity: 1;
+}
+
+.premium-signup-content {
+  @apply relative p-8 md:p-10;
+}
+
+/* Premium Input Styles */
+.premium-input-wrapper {
+  @apply w-full;
+}
+
+.premium-input-container {
+  @apply relative;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.premium-input-border {
+  @apply absolute inset-0 rounded-2xl;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  padding: 1px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: all 0.4s ease;
+}
+
+.premium-input-container:focus-within .premium-input-border {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary) / 0.6) 0%,
+    hsl(var(--primary) / 0.3) 50%,
+    hsl(var(--accent) / 0.5) 100%
+  );
+  opacity: 1;
+}
+
+.premium-input-inner {
+  @apply relative flex items-center gap-3;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border-radius: 16px;
+  padding: 6px;
+  padding-left: 20px;
+}
+
+.premium-input-icon {
+  @apply flex-shrink-0;
+  color: hsl(var(--muted-foreground));
+  transition: color 0.3s ease;
+}
+
+.premium-input-container:focus-within .premium-input-icon {
+  color: hsl(var(--primary));
+}
+
+.premium-input {
+  @apply flex-1 bg-transparent py-4 text-base font-medium;
+  color: hsl(var(--foreground));
+  outline: none;
+  min-width: 0;
+}
+
+.premium-input::placeholder {
+  color: hsl(var(--muted-foreground) / 0.6);
+}
+
+/* Premium Submit Button */
+.premium-submit-btn {
+  @apply relative flex items-center gap-2 px-6 py-4 rounded-xl font-semibold text-sm overflow-hidden;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--primary)) 0%,
+    hsl(var(--primary) / 0.9) 50%,
+    hsl(var(--primary)) 100%
+  );
+  color: hsl(var(--primary-foreground));
+  border: none;
+  box-shadow: 
+    0 8px 24px hsl(var(--primary) / 0.4),
+    0 0 0 1px hsl(var(--primary) / 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.premium-submit-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 12px 32px hsl(var(--primary) / 0.5),
+    0 0 0 1px hsl(var(--primary) / 0.2),
+    0 0 60px hsl(var(--primary) / 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.premium-submit-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.premium-btn-text {
+  @apply relative z-10;
+}
+
+.premium-btn-icon {
+  @apply relative z-10 flex items-center;
+  transition: transform 0.3s ease;
+}
+
+.premium-submit-btn:hover .premium-btn-icon {
+  transform: translateX(3px);
+}
+
+.premium-btn-shimmer {
+  @apply absolute inset-0;
+  background: linear-gradient(
+    110deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 75%
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.premium-submit-btn:hover .premium-btn-shimmer {
+  transform: translateX(100%);
+}
+
+/* Premium Trust Row */
+.premium-trust-row {
+  @apply flex items-center justify-center gap-4 mt-8 flex-wrap;
+}
+
+.premium-trust-item {
+  @apply flex items-center gap-2 text-xs font-medium;
+  color: hsl(var(--muted-foreground));
+  transition: color 0.3s ease;
+}
+
+.premium-trust-item:hover {
+  color: hsl(var(--foreground) / 0.8);
+}
+
+.premium-trust-icon {
+  @apply flex items-center justify-center w-6 h-6 rounded-full;
+  background: linear-gradient(135deg, hsl(var(--accent) / 0.2) 0%, hsl(var(--primary) / 0.1) 100%);
+  color: hsl(var(--accent));
+}
+
+.premium-trust-divider {
+  width: 1px;
+  height: 16px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    hsl(var(--border) / 0.5) 50%,
+    transparent 100%
+  );
+}
+
+/* Premium Subscribers Section */
+.premium-subscribers {
+  @apply flex items-center justify-center gap-3 mt-8 pt-6;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.premium-avatars {
+  @apply flex -space-x-2;
+}
+
+.premium-avatar {
+  @apply w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.premium-subscribers-text {
+  @apply text-xs;
+  color: hsl(var(--muted-foreground));
+}
+
+.premium-subscribers-count {
+  @apply font-bold;
+  color: hsl(var(--foreground) / 0.9);
+}
+
+/* Dark Mode Adjustments */
+.premium-signup-card:is(.dark *) {
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.01) 40%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  backdrop-filter: blur(100px) saturate(180%) brightness(0.95);
+  -webkit-backdrop-filter: blur(100px) saturate(180%) brightness(0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 32px 80px rgba(0, 0, 0, 0.4),
+    0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 80px hsl(var(--primary) / 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.premium-signup-card:is(.dark *):hover {
+  box-shadow: 
+    0 40px 100px rgba(0, 0, 0, 0.5),
+    0 0 1px rgba(255, 255, 255, 0.3),
+    0 0 120px hsl(var(--primary) / 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.premium-input-inner:is(.dark *) {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+}
+
+.premium-subscribers:is(.dark *) {
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+
+/* ===========================================
+   VERCEL-STYLE STATUS BADGES - LIQUID GLASS
+   =========================================== */
+.vercel-status-container {
+  @apply relative mx-auto;
+  max-width: fit-content;
+}
+
+.vercel-status-inner {
+  @apply relative flex items-center gap-0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  backdrop-filter: blur(80px) saturate(200%) brightness(1.1);
+  -webkit-backdrop-filter: blur(80px) saturate(200%) brightness(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 100px;
+  padding: 6px 8px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 80px rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.vercel-status-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.vercel-status-inner:hover {
+  backdrop-filter: blur(100px) saturate(220%) brightness(1.15);
+  -webkit-backdrop-filter: blur(100px) saturate(220%) brightness(1.15);
+  border-color: rgba(255, 255, 255, 0.28);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 100px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Dark mode for status container */
+.vercel-status-inner:is(.dark *) {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  backdrop-filter: blur(80px) saturate(180%) brightness(0.95);
+  -webkit-backdrop-filter: blur(80px) saturate(180%) brightness(0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.vercel-status-badge {
+  @apply flex items-center gap-2.5 px-4 py-2;
+  transition: all 0.3s ease;
+}
+
+.vercel-status-badge:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+}
+
+.vercel-pulse-dot {
+  @apply relative flex items-center justify-center;
+  width: 10px;
+  height: 10px;
+}
+
+.vercel-pulse-ring {
+  @apply absolute inset-0;
+  border-radius: 50%;
+  background: #10b981;
+  animation: vercel-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.vercel-pulse-core {
+  @apply relative block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  box-shadow: 
+    0 0 12px rgba(16, 185, 129, 0.6),
+    0 0 24px rgba(16, 185, 129, 0.3);
+}
+
+@keyframes vercel-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.vercel-status-text {
+  @apply text-sm font-medium tracking-tight;
+  color: hsl(var(--foreground) / 0.85);
+  letter-spacing: -0.01em;
+}
+
+.vercel-divider {
+  width: 1px;
+  height: 24px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.2) 80%,
+    transparent 100%
+  );
+}
+
+.vercel-divider:is(.dark *) {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent 100%
+  );
+}
+
+.vercel-launch-badge {
+  @apply flex items-center gap-2.5 px-4 py-2;
+  transition: all 0.3s ease;
+}
+
+.vercel-launch-badge:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+}
+
+.vercel-launch-icon {
+  @apply flex items-center justify-center;
+  width: 18px;
+  height: 18px;
+  color: hsl(var(--foreground) / 0.9);
+  transition: all 0.3s ease;
+}
+
+.vercel-launch-badge:hover .vercel-launch-icon {
+  color: hsl(var(--primary));
+  transform: translateY(-1px);
+}
+
+.vercel-launch-text {
+  @apply text-sm font-semibold tracking-tight;
+  color: hsl(var(--foreground) / 0.85);
+  letter-spacing: -0.01em;
+}
+
+/* Metrics Row */
+.vercel-metric {
+  @apply flex flex-col items-center gap-0.5;
+  transition: all 0.3s ease;
+}
+
+.vercel-metric:hover {
+  transform: translateY(-2px);
+}
+
+.vercel-metric-value {
+  @apply text-sm font-bold tracking-tight;
+  color: hsl(var(--foreground) / 0.9);
+  letter-spacing: -0.02em;
+}
+
+.vercel-metric-label {
+  @apply text-xs font-medium;
+  color: hsl(var(--muted-foreground) / 0.8);
+  letter-spacing: 0.02em;
+}
+
+.vercel-metric-divider {
+  width: 1px;
+  height: 28px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    hsl(var(--border) / 0.4) 30%,
+    hsl(var(--border) / 0.4) 70%,
+    transparent 100%
+  );
+}
+
+/* ===========================================
    ANIMATED ORBS (replacing blobs)
    =========================================== */
 .orb {

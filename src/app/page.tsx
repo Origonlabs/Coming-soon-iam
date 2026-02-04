@@ -4,6 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 
 // Importar Beams dinámicamente (Three.js no funciona con SSR)
 const Beams = dynamic(
@@ -21,7 +25,7 @@ export default function Home() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
+  // const logoRef = useRef<HTMLDivElement>(null);
   const [currentYear] = useState(() => new Date().getFullYear());
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -42,7 +46,7 @@ export default function Home() {
 
     const ctx = gsap.context(() => {
       if (prefersReducedMotion) {
-        gsap.set([logoRef.current, titleRef.current, subtitleRef.current, badgeRef.current, footerRef.current], { 
+        gsap.set([titleRef.current, subtitleRef.current, badgeRef.current, footerRef.current], { 
           opacity: 1, 
           y: 0,
           scale: 1 
@@ -52,14 +56,9 @@ export default function Home() {
 
       const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
-      tl.fromTo(logoRef.current,
-        { scale: 0, opacity: 0, rotate: -180 },
-        { scale: 1, opacity: 1, rotate: 0, duration: 1.2 }
-      )
-      .fromTo(titleRef.current,
+      tl.fromTo(titleRef.current,
         { y: 100, opacity: 0, skewY: 7 },
-        { y: 0, opacity: 1, skewY: 0, duration: 1 },
-        '-=0.6'
+        { y: 0, opacity: 1, skewY: 0, duration: 1 }
       )
       .fromTo(subtitleRef.current,
         { y: 50, opacity: 0 },
@@ -132,8 +131,8 @@ export default function Home() {
       {/* Main Content */}
       <main role="main" className="relative z-10 flex flex-1 flex-col items-center justify-center p-6 text-center">
         
-        {/* Logo with Glow */}
-        <div ref={logoRef} className="relative mb-12 opacity-0">
+        {/* Logo with Glow - Removed */}
+        {/* <div ref={logoRef} className="relative mb-12 opacity-0">
           <div className="absolute inset-0 blur-2xl bg-primary/30 rounded-full scale-150 animate-pulse-slow" />
           <div className="relative glass-card p-4 rounded-2xl">
             <Image
@@ -145,7 +144,7 @@ export default function Home() {
               className="drop-shadow-2xl"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Hero Section */}
         <div ref={heroRef} className="max-w-4xl mx-auto space-y-8">
@@ -168,63 +167,157 @@ export default function Home() {
             Una nueva experiencia que transformará la forma en que interactúas con la tecnología.
           </p>
 
-          {/* Status Badge */}
-          <div ref={badgeRef} className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8 opacity-0">
-            <div className="glass-card px-6 py-3 rounded-full flex items-center gap-3 group hover:scale-105 transition-transform duration-300">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500" />
-              </span>
-              <span className="text-sm font-medium text-foreground/80">En desarrollo activo</span>
+          {/* Status Badge - Vercel Style with Liquid Glass */}
+          <div ref={badgeRef} className="pt-10 opacity-0">
+            {/* Premium Status Container */}
+            <div className="vercel-status-container">
+              <div className="vercel-status-inner">
+                {/* Live Indicator */}
+                <div className="vercel-status-badge group">
+                  <div className="vercel-pulse-dot">
+                    <span className="vercel-pulse-ring" />
+                    <span className="vercel-pulse-core" />
+                  </div>
+                  <span className="vercel-status-text">En desarrollo</span>
+                </div>
+
+                {/* Elegant Divider */}
+                <div className="vercel-divider" />
+
+                {/* Launch Badge */}
+                <div className="vercel-launch-badge group">
+                  <div className="vercel-launch-icon">
+                    <Image 
+                      src="/logo_opendex.png" 
+                      alt="Opendex Logo" 
+                      width={16} 
+                      height={16} 
+                      className="w-4 h-4 object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                  <span className="vercel-launch-text">{currentYear}</span>
+                </div>
+              </div>
             </div>
-            
-            <div className="glass-card px-6 py-3 rounded-full flex items-center gap-3 group hover:scale-105 transition-transform duration-300">
-              <span className="text-2xl">🚀</span>
-              <span className="text-sm font-medium text-foreground/80">Lanzamiento {currentYear}</span>
+
+            {/* Secondary Status Row */}
+            <div className="flex items-center justify-center gap-6 mt-6">
+              <div className="vercel-metric">
+                <span className="vercel-metric-value">99.9%</span>
+                <span className="vercel-metric-label">Uptime</span>
+              </div>
+              <div className="vercel-metric-divider" />
+              <div className="vercel-metric">
+                <span className="vercel-metric-value">&lt;50ms</span>
+                <span className="vercel-metric-label">Latency</span>
+              </div>
+              <div className="vercel-metric-divider" />
+              <div className="vercel-metric">
+                <span className="vercel-metric-value">Edge</span>
+                <span className="vercel-metric-label">Global</span>
+              </div>
             </div>
           </div>
 
-          {/* Email Signup Teaser */}
-          <div className="pt-8">
-            <div className="glass-card-strong max-w-md mx-auto p-1.5 rounded-full">
-              <div className="flex items-center gap-2">
-                <input 
-                  type="email" 
-                  placeholder="tu@email.com"
-                  className="flex-1 bg-transparent px-6 py-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none"
-                  aria-label="Email para notificaciones"
-                />
-                <button className="liquid-glass-btn text-primary-foreground px-8 py-4 rounded-full font-semibold text-sm">
-                  Notifícame
-                </button>
-              </div>
+          {/* Email Signup - shadcn/ui Design */}
+          <div className="pt-16 pb-8 w-full max-w-xl mx-auto px-4">
+            {/* Badge */}
+            <div className="flex justify-center mb-6">
+              <Badge variant="outline" className="px-4 py-1.5 text-xs font-medium border-primary/20 bg-primary/5 text-primary backdrop-blur-sm">
+                <span className="relative flex h-2 w-2 mr-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                </span>
+                Acceso Anticipado
+              </Badge>
             </div>
-            <p className="text-xs text-muted-foreground mt-4">
-              Sé el primero en saber cuando lancemos. Sin spam, lo prometemos.
-            </p>
+
+            {/* Main Card */}
+            <Card className="border-border/40 bg-card/80 backdrop-blur-xl shadow-2xl shadow-primary/5">
+              <CardHeader className="text-center pb-4">
+                <CardTitle className="text-2xl md:text-3xl font-bold tracking-tight">
+                  Sé el primero en saberlo
+                </CardTitle>
+                <CardDescription className="text-base max-w-sm mx-auto">
+                  Únete a los pioneros y obtén acceso exclusivo antes del lanzamiento oficial.
+                </CardDescription>
+              </CardHeader>
+              
+              <CardContent className="space-y-6">
+                {/* Email Form */}
+                <form className="flex flex-col sm:flex-row gap-3">
+                  <div className="relative flex-1">
+                    <svg 
+                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground pointer-events-none"
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                    <Input 
+                      type="email" 
+                      placeholder="nombre@empresa.com"
+                      className="pl-8 h-7 rounded-xl bg-background/50 border-border/50 focus:border-primary/50 focus:ring-primary/20 text-xs"
+                      aria-label="Email para lista de espera"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="h-7 px-6 font-semibold rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 text-xs"
+                  >
+                    <span>Unirme</span>
+                    <svg className="w-3.5 h-3.5 ml-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </Button>
+                </form>
+
+                {/* Trust Indicators */}
+                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 pt-2">
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                    <span>Sin spam</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                    <span>Acceso anticipado</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <svg className="w-4 h-4 text-emerald-500" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                    </svg>
+                    <span>Beneficios VIP</span>
+                  </div>
+                </div>
+
+                {/* Subscribers Social Proof */}
+                <div className="flex items-center justify-center gap-3 pt-4 border-t border-border/30">
+                  <div className="flex -space-x-2">
+                    {['bg-gradient-to-br from-violet-500 to-purple-600', 'bg-gradient-to-br from-pink-500 to-rose-500', 'bg-gradient-to-br from-blue-500 to-cyan-500', 'bg-gradient-to-br from-emerald-500 to-teal-500'].map((gradient, i) => (
+                      <div 
+                        key={i} 
+                        className={`w-8 h-8 rounded-full ${gradient} ring-2 ring-background flex items-center justify-center text-xs font-semibold text-white shadow-lg`}
+                      >
+                        {['A', 'M', 'J', 'C'][i]}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">2,847+</span> pioneros ya están en la lista
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
         </div>
       </main>
-
-      {/* Social Links */}
-      <div className="relative z-10 flex justify-center gap-6 pb-4">
-        <a href="#" className="glass-card p-3 rounded-full hover:scale-110 transition-transform duration-300 group" aria-label="Twitter">
-          <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
-        <a href="#" className="glass-card p-3 rounded-full hover:scale-110 transition-transform duration-300 group" aria-label="GitHub">
-          <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-        </a>
-        <a href="#" className="glass-card p-3 rounded-full hover:scale-110 transition-transform duration-300 group" aria-label="LinkedIn">
-          <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-        </a>
-      </div>
 
       {/* Footer */}
       <footer 
